@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalStartGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalEndGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontalTopGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontalBottomGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
+
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toTopOf="@id/horizontalTopGL"
+            tools:src="@drawable/ic_default_avatar" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/UserPropertyName"
+            app:layout_constraintBottom_toTopOf="@id/login"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Sokolov Dmitriy" />
+
+        <TextView
+            android:id="@+id/login"
+            style="@style/UserPropertyLogin"
+            app:layout_constraintBottom_toBottomOf="@id/avatar"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="Sokolov-Dmitriy" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/headerGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="avatar,name,login" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/headerBarrier"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="avatar,login" />
+
+        <ImageView
+            android:id="@+id/locationIcon"
+            style="@style/UserPropertyIcon"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toBottomOf="@id/headerBarrier" />
+
+        <TextView
+            android:id="@+id/location"
+            style="@style/UserPropertyText"
+            app:layout_constraintBottom_toBottomOf="@id/locationIcon"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/locationIcon"
+            app:layout_constraintTop_toTopOf="@id/locationIcon"
+            tools:text="Санкт-Петербург" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/locationGroup"
+            style="@style/HideGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="locationIcon,location" />
+
+        <ImageView
+            android:id="@+id/websiteIcon"
+            style="@style/UserPropertyIcon"
+            android:src="@drawable/ic_web"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toBottomOf="@id/locationIcon" />
+
+        <TextView
+            android:id="@+id/website"
+            style="@style/UserPropertyText"
+            app:layout_constraintBottom_toBottomOf="@id/websiteIcon"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/websiteIcon"
+            app:layout_constraintTop_toTopOf="@id/websiteIcon"
+            tools:text="sokolovds.com" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/websiteGroup"
+            style="@style/HideGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="websiteIcon,website" />
+
+        <ImageView
+            android:id="@+id/emailIcon"
+            style="@style/UserPropertyIcon"
+            android:src="@drawable/ic_email"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toBottomOf="@id/websiteIcon" />
+
+        <TextView
+            android:id="@+id/email"
+            style="@style/UserPropertyText"
+            app:layout_constraintBottom_toBottomOf="@id/emailIcon"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/emailIcon"
+            app:layout_constraintTop_toTopOf="@id/emailIcon"
+            tools:text="dmitriu9511@gmail.com" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/emailGroup"
+            style="@style/HideGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="emailIcon,email" />
+
+        <ImageView
+            android:id="@+id/companyIcon"
+            style="@style/UserPropertyIcon"
+            android:src="@drawable/ic_company"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toBottomOf="@id/emailIcon" />
+
+        <TextView
+            android:id="@+id/company"
+            style="@style/UserPropertyText"
+            app:layout_constraintBottom_toBottomOf="@id/companyIcon"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/companyIcon"
+            app:layout_constraintTop_toTopOf="@id/companyIcon"
+            tools:text="ITMO University" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/companyGroup"
+            style="@style/HideGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="companyIcon,company" />
+
+        <ImageView
+            android:id="@+id/followIcon"
+            style="@style/UserPropertyIcon"
+            android:src="@drawable/ic_follow"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toBottomOf="@id/companyIcon" />
+
+        <TextView
+            android:id="@+id/follow"
+            style="@style/UserPropertyText"
+            app:layout_constraintBottom_toBottomOf="@id/followIcon"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/followIcon"
+            app:layout_constraintTop_toTopOf="@id/followIcon"
+            tools:text="0 followers  |  1 following" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/followGroup"
+            style="@style/HideGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="followIcon,follow" />
+
+        <ImageView
+            android:id="@+id/dateIcon"
+            style="@style/UserPropertyIcon"
+            android:src="@drawable/ic_date"
+            app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+            app:layout_constraintTop_toBottomOf="@id/followIcon" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/UserPropertyText"
+            app:layout_constraintBottom_toBottomOf="@id/dateIcon"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+            app:layout_constraintStart_toEndOf="@id/dateIcon"
+            app:layout_constraintTop_toTopOf="@id/dateIcon"
+            tools:text="15.09.2005 was registered" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/dateGroup"
+            style="@style/HideGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="dateIcon,date" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/tryAgainBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/try_again"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/errorMsg" />
+
+        <TextView
+            android:id="@+id/errorMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Кажется у вас проблемы с интернетом, рекомедуем проверить соединение" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/errorGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="errorMsg,tryAgainBtn" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

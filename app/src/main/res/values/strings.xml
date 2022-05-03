@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GitHubUsers</string>
+    <string name="try_again">Try again</string>
+    <string name="follow">%1$d followers  |  %2$d following</string>
+    <string name="problems_with_internet_connection">Problems with internet connection</string>
+    <string name="some_problems_on_the_server">Some problems on the server</string>
+    <string name="user_with_such_nickname_could_not_be_found">User with such nickname could not be found</string>
+    <string name="enter_the_github_nickname">Enter the GitHub nickname</string>
+    <string name="you_are_using_invalid_characters">You are using invalid characters</string>
+    <string name="you_have_reached_the_request_limit_please_wait_a_bit">You have reached the request limit, please wait a bit</string>
+</resources>
