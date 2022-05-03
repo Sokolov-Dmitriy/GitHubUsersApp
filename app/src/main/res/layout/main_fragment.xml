@@ -3,25 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0d1117"
+    tools:context="com.sokolovds.githubusers.presentation.screens.mainScreen.MainFragment">
 
-    <EditText
-        android:id="@+id/searchField"
-        style="@style/SearchField"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalStartGL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/common_layout_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalEndGL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/common_layout_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalTopGL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/common_layout_margin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalBottomGL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="@dimen/common_layout_margin" />
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/filledTextField"
+        style="@style/TextInputLayoutCustom"
+        app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+        app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+        app:layout_constraintTop_toTopOf="@id/horizontalTopGL">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchField"
+            style="@style/SearchField" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+        app:layout_constraintStart_toStartOf="@id/verticalStartGL"
         app:layout_constraintTop_toBottomOf="@id/errorMsg"
         tools:itemCount="10"
-        tools:listitem="@layout/user_item"/>
+        tools:listitem="@layout/user_item" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -47,7 +85,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchField"
+        app:layout_constraintTop_toBottomOf="@id/filledTextField"
         tools:text="Кажется у вас проблемы с интернетом, рекомедуем проверить соединение" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

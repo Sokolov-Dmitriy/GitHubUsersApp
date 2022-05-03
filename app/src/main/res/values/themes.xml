@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.GitHubUsers" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#96E264</item>
+        <item name="colorPrimaryVariant">#0d1117</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,6 +11,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">#0d1117</item>
+
+
         <!-- Customize your theme here. -->
     </style>
 
@@ -21,7 +24,7 @@
     </style>
 
     <style name="UserPropertyText">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">#bdc1c6</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
@@ -44,6 +47,7 @@
     </style>
 
     <style name="ErrorMsg">
+        <item name="android:textColor">#bdc1c6</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -56,29 +60,42 @@
     </style>
 
     <style name="ProgressBar">
+        <item name="android:indeterminateTint">#96E264</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="SearchField">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:lines">1</item>
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#96E264</item>
+
     </style>
 
     <style name="LoginInItem">
+        <item name="android:textColor">#bdc1c6</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">2</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="AvatarInItem">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:src">@drawable/ic_default_avatar</item>
+    </style>
+
+    <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#96E264</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxStrokeWidth">2dp</item>
+
+
     </style>
 </resources>

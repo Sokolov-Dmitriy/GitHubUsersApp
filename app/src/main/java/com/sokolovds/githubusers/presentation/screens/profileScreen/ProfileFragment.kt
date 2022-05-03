@@ -84,7 +84,12 @@ class ProfileFragment :
             data.company.setInView(companyGroup, company, visible = visible)
             data.name.setInView(headerGroup, name, visible = visible)
             data.login.setInView(headerGroup, login, visible = visible)
-            data.createdAt.setInView(dateGroup, date, visible = visible)
+            data.createdAt.setInView(
+                dateGroup,
+                date,
+                getString(R.string.created_at, data.createdAt),
+                visible = visible
+            )
             data.login.setInView(
                 followGroup,
                 follow,

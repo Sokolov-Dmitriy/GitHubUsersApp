@@ -10,7 +10,11 @@ object DefaultValues {
     //for authHeader
     data class Header(
         val name: String = "Authorization",
-        val value: String = "Bearer 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"
+        val type: String = "Bearer",
+        //create your Personal access tokens in GitHub Settings->Developer settings->Personal access tokens
+        //choose only:"read:user, user:email"
+        val token: String = "",
+        val value: String = "$type $token"
     )
 
     val HEADER = Header()

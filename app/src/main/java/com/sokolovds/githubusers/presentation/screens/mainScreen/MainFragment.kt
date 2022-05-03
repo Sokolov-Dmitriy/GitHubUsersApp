@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.insertFooterItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.models.onError
@@ -88,7 +89,7 @@ class MainFragment :
             progressBar.isVisible = true
             tryAgainBtn.isVisible = false
             errorMsg.isVisible = false
-            recyclerView.isVisible = true
+            recyclerView.isVisible = false
         }
     }
 
@@ -108,6 +109,7 @@ class MainFragment :
     private fun setupNotLoadingState() {
         binding.apply {
             progressBar.isVisible = false
+            recyclerView.isVisible = true
         }
     }
 

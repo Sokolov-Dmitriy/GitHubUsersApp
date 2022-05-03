@@ -33,6 +33,7 @@ class UserAdapter(private val listener: ClickListener) :
                 Glide
                     .with(context)
                     .load(item.avatarUrl)
+                    .circleCrop()
                     .placeholder(R.drawable.ic_default_avatar)
                     .error(R.drawable.ic_default_avatar)
                     .into(avatar)

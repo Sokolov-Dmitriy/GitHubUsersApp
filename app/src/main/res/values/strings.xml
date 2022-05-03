@@ -2,6 +2,7 @@
     <string name="app_name">GitHubUsers</string>
     <string name="try_again">Try again</string>
     <string name="follow">%1$d followers  |  %2$d following</string>
+    <string name="created_at">%1$s was created</string>
     <string name="problems_with_internet_connection">Problems with internet connection</string>
     <string name="some_problems_on_the_server">Some problems on the server</string>
     <string name="user_with_such_nickname_could_not_be_found">User with such nickname could not be found</string>

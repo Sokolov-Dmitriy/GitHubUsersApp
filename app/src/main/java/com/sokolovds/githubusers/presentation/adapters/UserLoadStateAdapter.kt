@@ -25,7 +25,6 @@ class UserLoadStateAdapter(
                 .onLoading { setupLoadingState() }
                 .onNotLoading { setupNotLoadingState() }
                 .onError { setupErrorState(it) }
-
         }
 
         private fun setupButtons() {
