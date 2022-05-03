@@ -1,4 +1,5 @@
 ## GitHubUsersApp
+
 ####Мобильное приложение для поиска пользователей GitHub
 
 ------------
@@ -14,7 +15,7 @@
 
 ------------
 #### Запуск приложения:
-##### Для запуска необходимо указать Personal access tokens в файле (domain\src\main\java\com\sokolovds\domain\DefaultValues.kt)
+##### Для запуска необходимо указать Personal access tokens в файле (domain\DefaultValues.kt)
 ```
 data class Header(
         val name: String = "Authorization",
