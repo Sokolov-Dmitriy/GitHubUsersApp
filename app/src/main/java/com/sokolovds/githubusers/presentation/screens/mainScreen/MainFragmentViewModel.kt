@@ -1,5 +1,6 @@
 package com.sokolovds.githubusers.presentation.screens.mainScreen
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -10,7 +11,7 @@ import com.sokolovds.domain.models.UserItem
 import com.sokolovds.domain.usecase.GetUsersPagingSource
 import com.sokolovds.domain.usecase.SetCurrentUser
 import com.sokolovds.githubusers.presentation.adapters.UserAdapter
-import com.sokolovds.githubusers.presentation.base.BaseViewModel
+import com.sokolovds.githubusers.presentation.utils.navigation.NavigationController
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
@@ -18,13 +19,16 @@ import org.koin.core.component.inject
 
 @OptIn(FlowPreview::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class MainFragmentViewModel(
+    private val navigationController: NavigationController,
     private val getUsersPagingSource: GetUsersPagingSource,
     private val setCurrentUser: SetCurrentUser
-) : BaseViewModel(), UserAdapter.ClickListener, KoinComponent {
+) : ViewModel(), UserAdapter.ClickListener, KoinComponent {
     val flow: Flow<PagingData<UserItem>>
 
     private val searchBy = MutableStateFlow("")
     private val pagingConfig by inject<PagingConfig>()
+
+    val navActionFlow = navigationController.navActionFlow(viewModelScope)
 
     init {
         flow = searchBy
@@ -48,7 +52,7 @@ class MainFragmentViewModel(
 
     override fun onItemClick(login: String) {
         setCurrentUser(login)
-        navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
+        navigationController.navigateTo(MainFragmentDirections.actionMainFragmentToProfileFragment())
     }
 
 }

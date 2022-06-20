@@ -1,14 +1,14 @@
 package com.sokolovds.githubusers.presentation.screens.profileScreen
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.models.User
@@ -17,24 +17,16 @@ import com.sokolovds.domain.models.onLoading
 import com.sokolovds.domain.models.onSuccess
 import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.ProfileFragmentBinding
-import com.sokolovds.githubusers.presentation.base.BaseFragment
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class ProfileFragment :
-    BaseFragment<ProfileFragmentBinding, ProfileFragmentViewModel>(),
-    KoinComponent {
+class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
-    override val viewModel by viewModel<ProfileFragmentViewModel>()
-    override val uiErrorHandler by inject<UiErrorHandler>()
-
-    override fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ) = ProfileFragmentBinding.inflate(inflater, container, false)
+    private val binding by viewBinding(ProfileFragmentBinding::bind)
+    private val viewModel by viewModel<ProfileFragmentViewModel>()
+    private val uiErrorHandler by inject<UiErrorHandler>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

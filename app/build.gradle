@@ -40,6 +40,7 @@ ext {
     koinVersion = "3.1.6"
     navVersion = "2.4.2"
     glideVersion = "4.12.0"
+    rozov_binding_version = '1.5.6'
 }
 
 dependencies {
@@ -60,4 +61,5 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+    implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$rozov_binding_version"
 }

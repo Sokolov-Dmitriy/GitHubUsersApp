@@ -1,41 +1,49 @@
 package com.sokolovds.githubusers.presentation.screens.mainScreen
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.insertFooterItem
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.models.onError
 import com.sokolovds.domain.models.onLoading
 import com.sokolovds.domain.models.onNotLoading
+import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.presentation.adapters.UserAdapter
 import com.sokolovds.githubusers.databinding.MainFragmentBinding
+import com.sokolovds.githubusers.di.ViewHandlerEnum
 import com.sokolovds.githubusers.presentation.adapters.UserLoadStateAdapter
-import com.sokolovds.githubusers.presentation.base.BaseFragment
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
+import com.sokolovds.githubusers.presentation.utils.ViewHandler
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import org.koin.java.KoinJavaComponent.inject
+import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 
-class MainFragment :
-    BaseFragment<MainFragmentBinding, MainFragmentViewModel>() {
-
-    override val viewModel by viewModel<MainFragmentViewModel>()
-    override val uiErrorHandler by inject<UiErrorHandler>()
+class MainFragment : Fragment(R.layout.main_fragment) {
+    private val binding by viewBinding(MainFragmentBinding::bind)
+    private val viewModel by viewModel<MainFragmentViewModel>()
+    private val uiErrorHandler by inject<UiErrorHandler>()
     private val adapter: UserAdapter by lazy {
         UserAdapter(viewModel)
+    }
+    private val navigationHandler by inject<ViewHandler>(named(ViewHandlerEnum.NAVIGATION)) {
+        parametersOf(
+            lifecycleScope,
+            viewModel.navActionFlow,
+            findNavController()
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navigationHandler.subscribe()
         setupRecyclerView()
         setupButtons()
         setupEditTextFields()
@@ -114,9 +122,5 @@ class MainFragment :
         }
     }
 
-    override fun inflateBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ) = MainFragmentBinding.inflate(inflater, container, false)
 
 }
