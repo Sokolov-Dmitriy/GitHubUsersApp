@@ -13,7 +13,7 @@ object DefaultValues {
         val type: String = "Bearer",
         //create your Personal access tokens in GitHub Settings->Developer settings->Personal access tokens
         //choose only:"read:user, user:email"
-        val token: String = "",
+        val token: String = " ",
         val value: String = "$type $token"
     )
 
