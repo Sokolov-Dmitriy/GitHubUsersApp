@@ -1,6 +1,6 @@
 package com.sokolovds.githubusers.di
 
-import com.sokolovds.domain.ErrorHandler
+import com.sokolovds.data.utils.ErrorHandler
 import com.sokolovds.domain.usecase.GetCurrentUserAsFlow
 import com.sokolovds.domain.usecase.GetUserByLogin
 import com.sokolovds.domain.usecase.GetUsersPagingSource

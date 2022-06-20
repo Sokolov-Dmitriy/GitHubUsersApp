@@ -19,13 +19,14 @@ import com.sokolovds.githubusers.presentation.adapters.UserLoadStateAdapter
 import com.sokolovds.githubusers.presentation.base.BaseFragment
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.koin.java.KoinJavaComponent.inject
 
 class MainFragment :
-    BaseFragment<MainFragmentBinding, MainFragmentViewModel>(),
-    KoinComponent {
+    BaseFragment<MainFragmentBinding, MainFragmentViewModel>() {
 
     override val viewModel by viewModel<MainFragmentViewModel>()
     override val uiErrorHandler by inject<UiErrorHandler>()

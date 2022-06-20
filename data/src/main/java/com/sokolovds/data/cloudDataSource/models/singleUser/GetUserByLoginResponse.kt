@@ -21,8 +21,8 @@ data class GetUserByLoginResponse(
 
     @SuppressLint("SimpleDateFormat")
     private fun parseDate(date: String): String {
-        val oldFormat = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'")
-        val newFormat = SimpleDateFormat("yyyy-MM-dd")
+        val oldFormat = SimpleDateFormat(OLD_FORMAT_DATE)
+        val newFormat = SimpleDateFormat(NEW_FORMAT_DATE)
         return newFormat.format(oldFormat.parse(date)!!)
     }
 
@@ -38,5 +38,10 @@ data class GetUserByLoginResponse(
         website = if (blog != null && blog.isNotEmpty()) blog else null,
         login = login
     )
+
+    companion object{
+        const val OLD_FORMAT_DATE = "yyyy-MM-dd'T'hh:mm:ss'Z'"
+        const val NEW_FORMAT_DATE = "yyyy-MM-dd"
+    }
 
 }

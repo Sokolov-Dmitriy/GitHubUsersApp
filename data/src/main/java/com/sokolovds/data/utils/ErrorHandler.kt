@@ -1,5 +1,7 @@
-package com.sokolovds.domain
+package com.sokolovds.data.utils
 
+import com.sokolovds.domain.ApiCode
+import com.sokolovds.domain.ApiError
 import retrofit2.HttpException
 
 interface ErrorHandler {
@@ -20,5 +22,5 @@ interface ErrorHandler {
         }
     }
 
-    class Base:Abstract()
+    class Base: Abstract()
 }
