@@ -1,6 +1,7 @@
 package com.sokolovds.data.cloudDataSource.models.singleUser
 
 import android.annotation.SuppressLint
+import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.models.User
 import java.text.SimpleDateFormat
 
@@ -23,7 +24,7 @@ data class GetUserByLoginResponse(
     private fun parseDate(date: String): String {
         val oldFormat = SimpleDateFormat(OLD_FORMAT_DATE)
         val newFormat = SimpleDateFormat(NEW_FORMAT_DATE)
-        return newFormat.format(oldFormat.parse(date)!!)
+        return newFormat.format(oldFormat.parse(date) ?: throw ApiError.ParseDataFailed)
     }
 
     fun toUser() = User(
@@ -39,7 +40,7 @@ data class GetUserByLoginResponse(
         login = login
     )
 
-    companion object{
+    companion object {
         const val OLD_FORMAT_DATE = "yyyy-MM-dd'T'hh:mm:ss'Z'"
         const val NEW_FORMAT_DATE = "yyyy-MM-dd"
     }

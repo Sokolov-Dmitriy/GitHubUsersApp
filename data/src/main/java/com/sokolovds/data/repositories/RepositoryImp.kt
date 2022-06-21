@@ -3,6 +3,7 @@ package com.sokolovds.data.repositories
 import androidx.paging.PagingSource
 import com.sokolovds.data.cloudDataSource.UsersApi
 import com.sokolovds.data.utils.ErrorHandler
+import com.sokolovds.domain.DefaultValues
 import com.sokolovds.domain.Repository
 import com.sokolovds.domain.models.Result
 import com.sokolovds.domain.models.User
@@ -14,14 +15,9 @@ import kotlinx.coroutines.flow.*
 class RepositoryImp(
     private val service: UsersApi,
     private val errorHandler: ErrorHandler,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) : Repository.Abstract() {
-
-    override val currentUserLogin: Flow<String> = _currentUserLogin
-
-    override fun setCurrentLogin(login: String) {
-        _currentUserLogin.value = login
-    }
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val pageSize: Int = DefaultValues.PAGE_SIZE
+) : Repository {
 
     override fun getUsersPagingSource(searchBy: String): PagingSource<Int, UserItem> {
         return UsersPagingSource(service, pageSize, searchBy, errorHandler)

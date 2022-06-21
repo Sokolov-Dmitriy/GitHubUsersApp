@@ -22,5 +22,9 @@
         android:id="@+id/profileFragment"
         android:name="com.sokolovds.githubusers.presentation.screens.profileScreen.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <argument
+            android:name="userLogin"
+            app:argType="string" />
+    </fragment>
 </navigation>

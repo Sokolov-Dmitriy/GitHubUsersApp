@@ -9,7 +9,6 @@ import androidx.paging.cachedIn
 import com.sokolovds.domain.DefaultValues
 import com.sokolovds.domain.models.UserItem
 import com.sokolovds.domain.usecase.GetUsersPagingSource
-import com.sokolovds.domain.usecase.SetCurrentUser
 import com.sokolovds.githubusers.presentation.adapters.UserAdapter
 import com.sokolovds.githubusers.presentation.utils.navigation.NavigationController
 import kotlinx.coroutines.FlowPreview
@@ -20,8 +19,7 @@ import org.koin.core.component.inject
 @OptIn(FlowPreview::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class MainFragmentViewModel(
     private val navigationController: NavigationController,
-    private val getUsersPagingSource: GetUsersPagingSource,
-    private val setCurrentUser: SetCurrentUser
+    private val getUsersPagingSource: GetUsersPagingSource
 ) : ViewModel(), UserAdapter.ClickListener, KoinComponent {
     val flow: Flow<PagingData<UserItem>>
 
@@ -51,8 +49,9 @@ class MainFragmentViewModel(
     }
 
     override fun onItemClick(login: String) {
-        setCurrentUser(login)
-        navigationController.navigateTo(MainFragmentDirections.actionMainFragmentToProfileFragment())
+        navigationController.navigateTo(
+            MainFragmentDirections.actionMainFragmentToProfileFragment(login)
+        )
     }
 
 }

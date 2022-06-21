@@ -1,5 +1,6 @@
 package com.sokolovds.domain
 
+
 sealed class ApiError : Exception() {
 
     object Network : ApiError()
@@ -15,9 +16,11 @@ sealed class ApiError : Exception() {
     object ServiceUnavailable : ApiError()
 
     object Unknown : ApiError()
+
+    object ParseDataFailed : ApiError()
 }
 
-enum class ApiCode(val code:Int){
+enum class ApiCode(val code: Int) {
     VALIDATION_FAILED(422),
     FORBIDDEN(403),
     SERVICE_UNAVAILABLE(503)
