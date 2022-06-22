@@ -17,7 +17,7 @@
 
 ------------
 #### Запуск приложения:
-##### Для запуска желательно указать [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token "Personal Access Token") в файле local.properties, иначе будет ограничение в 10 запросов в минуту
+##### Для запуска желательно указать [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token "Personal Access Token") в файле local.properties, иначе будет ограничение на 10 запросов в минуту
 ```
 #create your Personal access tokens in GitHub Settings->Developer settings->Personal access tokens
 #choose only:"read:user, user:email"
