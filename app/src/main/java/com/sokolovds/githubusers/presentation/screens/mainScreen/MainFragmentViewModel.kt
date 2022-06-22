@@ -17,13 +17,11 @@ import org.koin.core.component.inject
 @OptIn(FlowPreview::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class MainFragmentViewModel(
     private val navigationController: NavigationController,
-    private val getUsersPagingSource: GetUsersPagingSource
-) : ViewModel(), KoinComponent {
+    private val getUsersPagingSource: GetUsersPagingSource,
+    private val pagingConfig: PagingConfig
+) : ViewModel(){
     val flow: Flow<PagingData<UserItem>>
-
     private val searchBy = MutableStateFlow("")
-    private val pagingConfig by inject<PagingConfig>()
-
     val navActionFlow = navigationController.navActionFlow(viewModelScope)
 
     init {

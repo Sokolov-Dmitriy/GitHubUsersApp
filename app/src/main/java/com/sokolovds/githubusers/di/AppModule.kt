@@ -18,7 +18,8 @@ val appModule = module {
     viewModel<MainFragmentViewModel> {
         MainFragmentViewModel(
             getUsersPagingSource = get(),
-            navigationController = get()
+            navigationController = get(),
+            pagingConfig = get()
         )
     }
 
