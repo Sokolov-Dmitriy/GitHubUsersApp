@@ -18,6 +18,8 @@ sealed class ApiError : Exception() {
     object Unknown : ApiError()
 
     object ParseDataFailed : ApiError()
+
+    object EmptyResponseBody : ApiError()
 }
 
 enum class ApiCode(val code: Int) {
