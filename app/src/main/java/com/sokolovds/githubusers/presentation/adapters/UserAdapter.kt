@@ -11,9 +11,10 @@ import com.sokolovds.domain.models.UserItem
 import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.UserItemBinding
 import com.sokolovds.githubusers.presentation.loadImage
+import com.sokolovds.githubusers.presentation.screens.mainScreen.entities.MainFragmentUserItemEntity
 
 class UserAdapter(private val listener: OnItemClickListener) :
-    PagingDataAdapter<UserItem, UserAdapter.UserViewHolder>(UserComparator()),
+    PagingDataAdapter<MainFragmentUserItemEntity, UserAdapter.UserViewHolder>(UserComparator()),
     UserLoadStateAdapter.RetryListener {
 
     fun interface OnItemClickListener {
@@ -26,7 +27,7 @@ class UserAdapter(private val listener: OnItemClickListener) :
     ) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-        fun bind(item: UserItem) {
+        fun bind(item: MainFragmentUserItemEntity) {
             binding.root.setOnClickListener(this)
             with(binding) {
                 root.tag = item
@@ -37,18 +38,22 @@ class UserAdapter(private val listener: OnItemClickListener) :
 
         override fun onClick(view: View?) {
             view?.let {
-                val item = it.tag as UserItem
+                val item = it.tag as MainFragmentUserItemEntity
                 listener(item.login)
             }
         }
     }
 
-    class UserComparator : DiffUtil.ItemCallback<UserItem>() {
-        override fun areItemsTheSame(oldItem: UserItem, newItem: UserItem) =
-            oldItem.id == newItem.id
+    class UserComparator : DiffUtil.ItemCallback<MainFragmentUserItemEntity>() {
+        override fun areItemsTheSame(
+            oldItem: MainFragmentUserItemEntity,
+            newItem: MainFragmentUserItemEntity
+        ) = oldItem.login == newItem.login
 
-        override fun areContentsTheSame(oldItem: UserItem, newItem: UserItem) =
-            oldItem == newItem
+        override fun areContentsTheSame(
+            oldItem: MainFragmentUserItemEntity,
+            newItem: MainFragmentUserItemEntity
+        ) = oldItem == newItem
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
