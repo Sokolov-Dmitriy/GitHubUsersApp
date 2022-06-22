@@ -20,5 +20,5 @@ object CloudConfig {
     val HEADER = Header()
 
     //for getUsers request
-    fun getFinishedQuery(query: String) = "$query in:Login"
+    fun getFinishedQuery(query: String) = "$query in:login&type:user"
 }
