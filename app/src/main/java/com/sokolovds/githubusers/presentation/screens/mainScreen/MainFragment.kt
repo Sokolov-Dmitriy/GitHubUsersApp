@@ -31,7 +31,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private val viewModel by viewModel<MainFragmentViewModel>()
     private val uiErrorHandler by inject<UiErrorHandler>()
     private val adapter: UserAdapter by lazy {
-        UserAdapter(viewModel)
+        UserAdapter { viewModel.onItemClick(it) }
     }
     private val navigationHandler by inject<ViewHandler>(named(ViewHandlerEnum.NAVIGATION)) {
         parametersOf(

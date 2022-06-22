@@ -1,5 +1,6 @@
 package com.sokolovds.githubusers.presentation
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -20,6 +21,7 @@ fun String.setInView(
     }
 }
 
+@SuppressLint("CheckResult")
 fun ImageView.loadImage(
     url: String,
     @DrawableRes loadImage: Int = R.drawable.ic_default_avatar,

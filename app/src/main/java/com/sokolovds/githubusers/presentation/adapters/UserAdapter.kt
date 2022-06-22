@@ -10,17 +10,19 @@ import com.bumptech.glide.Glide
 import com.sokolovds.domain.models.UserItem
 import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.UserItemBinding
+import com.sokolovds.githubusers.presentation.loadImage
 
-class UserAdapter(private val listener: ClickListener) :
+class UserAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<UserItem, UserAdapter.UserViewHolder>(UserComparator()),
     UserLoadStateAdapter.RetryListener {
-    interface ClickListener {
+
+    fun interface OnItemClickListener {
         fun onItemClick(login: String)
     }
 
     inner class UserViewHolder(
         private val binding: UserItemBinding,
-        private val listener: ClickListener
+        private val listener: (String) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
@@ -29,21 +31,14 @@ class UserAdapter(private val listener: ClickListener) :
             with(binding) {
                 root.tag = item
                 login.text = item.login
-                val context = avatar.context
-                Glide
-                    .with(context)
-                    .load(item.avatarUrl)
-                    .circleCrop()
-                    .placeholder(R.drawable.ic_default_avatar)
-                    .error(R.drawable.ic_default_avatar)
-                    .into(avatar)
+                avatar.loadImage(item.avatarUrl, circle = true)
             }
         }
 
-        override fun onClick(p0: View?) {
-            p0?.let {
+        override fun onClick(view: View?) {
+            view?.let {
                 val item = it.tag as UserItem
-                listener.onItemClick(item.login)
+                listener(item.login)
             }
         }
     }
@@ -64,7 +59,7 @@ class UserAdapter(private val listener: ClickListener) :
         val inflater = LayoutInflater.from(parent.context)
         return UserViewHolder(
             UserItemBinding.inflate(inflater, parent, false),
-            listener
+            listener::onItemClick
         )
     }
 
