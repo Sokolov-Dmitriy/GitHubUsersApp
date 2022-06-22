@@ -14,8 +14,7 @@ import com.sokolovds.githubusers.presentation.loadImage
 import com.sokolovds.githubusers.presentation.screens.mainScreen.entities.MainFragmentUserItemEntity
 
 class UserAdapter(private val listener: OnItemClickListener) :
-    PagingDataAdapter<MainFragmentUserItemEntity, UserAdapter.UserViewHolder>(UserComparator()),
-    UserLoadStateAdapter.RetryListener {
+    PagingDataAdapter<MainFragmentUserItemEntity, UserAdapter.UserViewHolder>(UserComparator()){
 
     fun interface OnItemClickListener {
         fun onItemClick(login: String)
@@ -68,7 +67,7 @@ class UserAdapter(private val listener: OnItemClickListener) :
         )
     }
 
-    override fun onRetryPressed() {
+    fun onRetryPressed() {
         this.retry()
     }
 

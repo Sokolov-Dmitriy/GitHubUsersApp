@@ -64,8 +64,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private fun setupRecyclerView() {
         val adapterWithLoadState =
             adapter.withLoadStateHeaderAndFooter(
-                header = UserLoadStateAdapter(adapter, uiErrorHandler),
-                footer = UserLoadStateAdapter(adapter, uiErrorHandler)
+                header = UserLoadStateAdapter(uiErrorHandler) { adapter.onRetryPressed() },
+                footer = UserLoadStateAdapter(uiErrorHandler) { adapter.onRetryPressed() }
             )
 
         binding.recyclerView.adapter = adapterWithLoadState

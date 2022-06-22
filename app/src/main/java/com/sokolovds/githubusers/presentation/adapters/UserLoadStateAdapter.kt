@@ -13,11 +13,13 @@ import com.sokolovds.githubusers.databinding.LoadStateAdapterBinding
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
 
 class UserLoadStateAdapter(
-    private val listener: RetryListener,
-    private val uiErrorHandler: UiErrorHandler
+    private val uiErrorHandler: UiErrorHandler,
+    private val listener: OnRetryClickListener,
 ) : LoadStateAdapter<UserLoadStateAdapter.StateViewHolder>() {
 
-    inner class StateViewHolder(private val binding: LoadStateAdapterBinding) :
+    inner class StateViewHolder(
+        private val binding: LoadStateAdapterBinding
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(loadState: LoadState) {
             setupButtons()
@@ -27,33 +29,26 @@ class UserLoadStateAdapter(
                 .onError { setupErrorState(it) }
         }
 
-        private fun setupButtons() {
-            binding.tryAgainBtn.setOnClickListener {
-                listener.onRetryPressed()
-            }
+        private fun setupButtons() = binding.tryAgainBtn.setOnClickListener {
+            listener.onRetryPressed()
         }
 
-        private fun setupLoadingState() {
-            binding.apply {
-                progressBar.isVisible = true
-                tryAgainBtn.isVisible = false
-                errorMsg.isVisible = false
-            }
+        private fun setupLoadingState() = with(binding) {
+            progressBar.isVisible = true
+            tryAgainBtn.isVisible = false
+            errorMsg.isVisible = false
         }
 
-        private fun setupErrorState(error: Throwable) {
-            binding.apply {
-                tryAgainBtn.isVisible = true
-                errorMsg.isVisible = true
-                progressBar.isVisible = false
-                errorMsg.text = uiErrorHandler.getString(error)
-            }
+        private fun setupErrorState(error: Throwable) = with(binding) {
+            tryAgainBtn.isVisible = true
+            errorMsg.isVisible = true
+            progressBar.isVisible = false
+            errorMsg.text = uiErrorHandler.getString(error)
         }
 
-        private fun setupNotLoadingState() {
-            binding.apply {
-                progressBar.isVisible = false
-            }
+
+        private fun setupNotLoadingState() = with(binding) {
+            progressBar.isVisible = false
         }
 
     }
@@ -62,7 +57,7 @@ class UserLoadStateAdapter(
         holder.bind(loadState)
     }
 
-    interface RetryListener {
+    fun interface OnRetryClickListener {
         fun onRetryPressed()
     }
 

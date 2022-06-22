@@ -16,13 +16,14 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-@OptIn(ExperimentalCoroutinesApi::class)
-@kotlinx.coroutines.FlowPreview
+
+
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class MainFragmentViewModel(
     private val navigationController: NavigationController,
     private val getUsersPagingSource: GetUsersPagingSource,
     private val pagingConfig: PagingConfig
-) : ViewModel(){
+) : ViewModel() {
     val flow: Flow<PagingData<MainFragmentUserItemEntity>>
     private val searchBy = MutableStateFlow("")
     val navActionFlow = navigationController.navActionFlow(viewModelScope)
@@ -41,18 +42,17 @@ class MainFragmentViewModel(
         }
     }
 
-    private fun setupUsersPager(searchBy: String): Flow<PagingData<MainFragmentUserItemEntity>> {
-        return Pager(pagingConfig) {
+    private fun setupUsersPager(searchBy: String): Flow<PagingData<MainFragmentUserItemEntity>> =
+        Pager(pagingConfig) {
             getUsersPagingSource(searchBy)
-        }.flow.map { pagingData->
+        }.flow.map { pagingData ->
             pagingData.map { MainFragmentUserItemEntity.fromDomainUserItemEntity(it) }
         }
-    }
 
-    fun onItemClick(login: String) {
-        navigationController.navigateTo(
-            MainFragmentDirections.actionMainFragmentToProfileFragment(login)
-        )
-    }
+
+    fun onItemClick(login: String) = navigationController.navigateTo(
+        MainFragmentDirections.actionMainFragmentToProfileFragment(login)
+    )
+
 
 }
