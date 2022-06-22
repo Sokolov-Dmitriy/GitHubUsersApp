@@ -23,7 +23,8 @@ android {
         debug {
             def localProperties = new Properties()
             localProperties.load(new FileInputStream(rootProject.file("local.properties")))
-            buildConfigField("String", "TOKEN", "\"" + localProperties['token'] + "\"")
+            def token = "\"" + localProperties['token'] + "\""
+            buildConfigField("String", "TOKEN", token)
         }
     }
     compileOptions {
