@@ -3,6 +3,7 @@ package com.sokolovds.data.repositories
 import androidx.paging.PagingSource
 import com.sokolovds.data.cloudDataSource.UsersApi
 import com.sokolovds.data.utils.ErrorHandler
+import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.DefaultValues
 import com.sokolovds.domain.Repository
 import com.sokolovds.domain.models.Result
@@ -28,8 +29,12 @@ class RepositoryImp(
             val response = service.getUserByLogin(login)
             emit(
                 if (response.isSuccessful) {
-                    val user = response.body()!!.toUser()
-                    Result.Success(user)
+                    val body = response.body()
+                    if (body == null) Result.Error(ApiError.EmptyResponseBody)
+                    else {
+                        val user = body.toUser()
+                        Result.Success(user)
+                    }
                 } else Result.Error(errorHandler.parseError(response.code()))
             )
         }
