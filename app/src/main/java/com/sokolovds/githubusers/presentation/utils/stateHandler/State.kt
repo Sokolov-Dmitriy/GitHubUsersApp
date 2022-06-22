@@ -1,6 +1,6 @@
 package com.sokolovds.githubusers.presentation.utils.stateHandler
 
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.presentation.utils.UIEntity
 
 

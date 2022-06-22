@@ -1,7 +1,6 @@
 package com.sokolovds.githubusers.presentation.screens.profileScreen.entities
 
 import com.sokolovds.domain.models.User
-import com.sokolovds.githubusers.presentation.chekNull
 import com.sokolovds.githubusers.presentation.utils.UIEntity
 
 data class ProfileFragmentUserEntity(
@@ -17,21 +16,18 @@ data class ProfileFragmentUserEntity(
     val avatarUrl: String
 ) : UIEntity {
     companion object {
-        private const val DEFAULT_STRING_VALUE = ""
-        fun fromDomainUserEntity(entity: User): ProfileFragmentUserEntity {
-            return ProfileFragmentUserEntity(
-                name = entity.name.chekNull(DEFAULT_STRING_VALUE),
-                login = entity.login,
-                email = entity.email.chekNull(DEFAULT_STRING_VALUE),
-                company = entity.company.chekNull(DEFAULT_STRING_VALUE),
-                createdAt = entity.createdAt,
-                followersCount = entity.followersCount,
-                followingCount = entity.followingCount,
-                location = entity.location.chekNull(DEFAULT_STRING_VALUE),
-                website = entity.website.chekNull(DEFAULT_STRING_VALUE),
-                avatarUrl = entity.avatarUrl
-            )
-        }
+        fun fromDomainUserEntity(entity: User) = ProfileFragmentUserEntity(
+            name = entity.name,
+            login = entity.login,
+            email = entity.email,
+            company = entity.company,
+            createdAt = entity.createdAt,
+            followersCount = entity.followersCount,
+            followingCount = entity.followingCount,
+            location = entity.location,
+            website = entity.website,
+            avatarUrl = entity.avatarUrl
+        )
     }
 }
 

@@ -4,10 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sokolovds.data.cloudDataSource.CloudConfig
 import com.sokolovds.data.cloudDataSource.UsersApi
-import com.sokolovds.domain.ApiError
-import com.sokolovds.domain.DefaultValues
 import com.sokolovds.data.utils.ErrorHandler
 import com.sokolovds.domain.models.UserItem
+import com.sokolovds.domain.utils.ApiError
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

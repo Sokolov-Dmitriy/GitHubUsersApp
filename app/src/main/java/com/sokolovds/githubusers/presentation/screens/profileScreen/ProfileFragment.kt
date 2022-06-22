@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.ProfileFragmentBinding
 import com.sokolovds.githubusers.di.ViewHandlerEnum

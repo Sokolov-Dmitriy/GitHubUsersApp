@@ -1,8 +1,10 @@
 package com.sokolovds.githubusers.presentation.utils.stateHandler
 
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.presentation.utils.UIEntity
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 interface StateController<UI : UIEntity> {
     fun successState(data: UI)

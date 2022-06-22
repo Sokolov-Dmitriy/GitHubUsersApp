@@ -35,5 +35,3 @@ fun ImageView.loadImage(
     if (circle) glideBuilder.circleCrop()
     glideBuilder.into(this)
 }
-
-fun <T> T?.chekNull(default: T) = this ?: default

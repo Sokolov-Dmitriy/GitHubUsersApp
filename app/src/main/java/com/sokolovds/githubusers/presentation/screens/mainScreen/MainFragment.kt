@@ -9,14 +9,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.models.onError
 import com.sokolovds.domain.models.onLoading
 import com.sokolovds.domain.models.onNotLoading
+import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.R
-import com.sokolovds.githubusers.presentation.adapters.UserAdapter
 import com.sokolovds.githubusers.databinding.MainFragmentBinding
 import com.sokolovds.githubusers.di.ViewHandlerEnum
+import com.sokolovds.githubusers.presentation.adapters.UserAdapter
 import com.sokolovds.githubusers.presentation.adapters.UserLoadStateAdapter
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
 import com.sokolovds.githubusers.presentation.utils.ViewHandler

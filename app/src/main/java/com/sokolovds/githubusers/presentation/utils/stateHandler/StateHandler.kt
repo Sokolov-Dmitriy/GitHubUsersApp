@@ -1,7 +1,7 @@
 package com.sokolovds.githubusers.presentation.utils.stateHandler
 
 import androidx.lifecycle.LifecycleCoroutineScope
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.presentation.utils.UIEntity
 import com.sokolovds.githubusers.presentation.utils.ViewHandler
 import kotlinx.coroutines.flow.StateFlow

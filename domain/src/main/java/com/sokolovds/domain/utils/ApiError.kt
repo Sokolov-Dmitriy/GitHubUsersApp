@@ -1,4 +1,4 @@
-package com.sokolovds.domain
+package com.sokolovds.domain.utils
 
 
 sealed class ApiError : Exception() {
@@ -22,11 +22,7 @@ sealed class ApiError : Exception() {
     object EmptyResponseBody : ApiError()
 }
 
-enum class ApiCode(val code: Int) {
-    VALIDATION_FAILED(422),
-    FORBIDDEN(403),
-    SERVICE_UNAVAILABLE(503)
-}
+
 
 //304 - Not modified
 //403 - Forbidden(лимит запросов)

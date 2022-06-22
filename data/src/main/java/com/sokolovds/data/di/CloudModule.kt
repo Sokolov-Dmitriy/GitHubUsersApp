@@ -1,9 +1,9 @@
 package com.sokolovds.data.di
 
-import com.sokolovds.data.repositories.RepositoryImp
-import com.sokolovds.data.cloudDataSource.*
-import com.sokolovds.domain.DefaultValues
-import com.sokolovds.domain.Repository
+import com.sokolovds.data.cloudDataSource.CloudConfig
+import com.sokolovds.data.cloudDataSource.Headers
+import com.sokolovds.data.cloudDataSource.ProvideApiService
+import com.sokolovds.data.cloudDataSource.UsersApi
 import org.koin.dsl.module
 
 

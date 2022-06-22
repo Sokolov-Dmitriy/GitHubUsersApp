@@ -1,7 +1,7 @@
 package com.sokolovds.data.utils
 
-import com.sokolovds.domain.ApiCode
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiCode
+import com.sokolovds.domain.utils.ApiError
 import retrofit2.HttpException
 
 interface ErrorHandler {

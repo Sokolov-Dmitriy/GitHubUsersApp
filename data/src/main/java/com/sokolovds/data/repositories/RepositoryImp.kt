@@ -3,12 +3,12 @@ package com.sokolovds.data.repositories
 import androidx.paging.PagingSource
 import com.sokolovds.data.cloudDataSource.UsersApi
 import com.sokolovds.data.utils.ErrorHandler
-import com.sokolovds.domain.ApiError
 import com.sokolovds.domain.DefaultValues
 import com.sokolovds.domain.Repository
 import com.sokolovds.domain.models.Result
 import com.sokolovds.domain.models.User
 import com.sokolovds.domain.models.UserItem
+import com.sokolovds.domain.utils.ApiError
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
