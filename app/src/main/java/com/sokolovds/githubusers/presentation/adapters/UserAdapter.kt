@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.sokolovds.domain.models.UserItem
-import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.UserItemBinding
 import com.sokolovds.githubusers.presentation.loadImage
 import com.sokolovds.githubusers.presentation.screens.mainScreen.entities.MainFragmentUserItemEntity

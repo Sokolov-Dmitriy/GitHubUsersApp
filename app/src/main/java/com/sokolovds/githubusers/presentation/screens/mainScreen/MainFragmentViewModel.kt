@@ -4,18 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.sokolovds.domain.DefaultValues
-import com.sokolovds.domain.models.UserItem
 import com.sokolovds.domain.usecase.GetUsersPagingSource
-import com.sokolovds.githubusers.presentation.adapters.UserAdapter
 import com.sokolovds.githubusers.presentation.screens.mainScreen.entities.MainFragmentUserItemEntity
 import com.sokolovds.githubusers.presentation.utils.navigation.NavigationController
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-
 
 
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)

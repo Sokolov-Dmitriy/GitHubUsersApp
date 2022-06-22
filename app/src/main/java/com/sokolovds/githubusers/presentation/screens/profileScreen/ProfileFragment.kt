@@ -42,13 +42,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         setupButtons()
     }
 
-    private fun setupButtons() {
-        binding.tryAgainBtn.setOnClickListener {
-            viewModel.onTryAgainPressed()
-        }
+    private fun setupButtons() = with(binding) {
+        tryAgainBtn.setOnClickListener { viewModel.onTryAgainPressed() }
     }
 
-    private fun setupContent(data: ProfileFragmentUserEntity, visible: Boolean = true) {
+    private fun setupContent(data: ProfileFragmentUserEntity, visible: Boolean = true) =
         with(binding) {
             data.location.setInView(locationGroup, location, visible = visible)
             data.website.setInView(websiteGroup, website, visible = visible)
@@ -69,7 +67,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             )
             avatar.loadImage(data.avatarUrl)
         }
-    }
+
 
     private val userStateHandlerImpl =
         object : StateHandler.HandlerImplementation<ProfileFragmentUserEntity> {
@@ -110,16 +108,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 emailGroup.isVisible = isVisible
                 websiteGroup.isVisible = isVisible
             }
-        } else if(data!=null)setupContent(data)
+        } else if (data != null) setupContent(data)
     }
 
-    private fun showError(isVisible: Boolean = false, error: ApiError? = null) {
-        binding.errorGroup.isVisible = isVisible
-        if (isVisible && error!=null) binding.errorMsg.text = uiErrorHandler.getString(error)
+    private fun showError(isVisible: Boolean = false, error: ApiError? = null) = with(binding) {
+        errorGroup.isVisible = isVisible
+        if (isVisible && error != null) errorMsg.text = uiErrorHandler.getString(error)
     }
 
-    private fun showProgressBar(isVisible: Boolean = false) {
-        binding.progressBar.isVisible = isVisible
+    private fun showProgressBar(isVisible: Boolean = false) = with(binding) {
+        progressBar.isVisible = isVisible
     }
 
 }

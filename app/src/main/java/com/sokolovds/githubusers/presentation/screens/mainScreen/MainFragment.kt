@@ -30,9 +30,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private val binding by viewBinding(MainFragmentBinding::bind)
     private val viewModel by viewModel<MainFragmentViewModel>()
     private val uiErrorHandler by inject<UiErrorHandler>()
-    private val adapter: UserAdapter by lazy {
-        UserAdapter { viewModel.onItemClick(it) }
-    }
+    private val adapter: UserAdapter by lazy { UserAdapter { viewModel.onItemClick(it) } }
     private val navigationHandler by inject<ViewHandler>(named(ViewHandlerEnum.NAVIGATION)) {
         parametersOf(
             lifecycleScope,
@@ -49,16 +47,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         setupEditTextFields()
     }
 
-    private fun setupButtons() {
-        binding.tryAgainBtn.setOnClickListener {
-            adapter.retry()
-        }
+    private fun setupButtons() = with(binding) {
+        tryAgainBtn.setOnClickListener { adapter.retry() }
     }
 
-    private fun setupEditTextFields() {
-        binding.searchField.addTextChangedListener {
-            viewModel.searchUser(it.toString())
-        }
+    private fun setupEditTextFields() = with(binding) {
+        searchField.addTextChangedListener { viewModel.searchUser(it.toString()) }
     }
 
     private fun setupRecyclerView() {
@@ -67,60 +61,50 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 header = UserLoadStateAdapter(uiErrorHandler) { adapter.onRetryPressed() },
                 footer = UserLoadStateAdapter(uiErrorHandler) { adapter.onRetryPressed() }
             )
-
         binding.recyclerView.adapter = adapterWithLoadState
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         observeAdapterData()
         observeAdapterDataState()
     }
 
-    private fun observeAdapterData() {
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.flow.collectLatest { pagingData ->
-                adapter.submitData(pagingData)
-            }
+    private fun observeAdapterData() = viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        viewModel.flow.collectLatest { pagingData ->
+            adapter.submitData(pagingData)
         }
     }
 
-    private fun observeAdapterDataState() {
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            adapter.loadStateFlow.collectLatest { state ->
-                state.refresh
-                    .onLoading { setupLoadingState() }
-                    .onNotLoading { setupNotLoadingState() }
-                    .onError { setupErrorState(it) }
-            }
+    private fun observeAdapterDataState() = viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        adapter.loadStateFlow.collectLatest { state ->
+            state.refresh
+                .onLoading { setupLoadingState() }
+                .onNotLoading { setupNotLoadingState() }
+                .onError { setupErrorState(it) }
         }
     }
 
-    private fun setupLoadingState() {
-        binding.apply {
-            progressBar.isVisible = true
-            tryAgainBtn.isVisible = false
-            errorMsg.isVisible = false
-            recyclerView.isVisible = false
-        }
+    private fun setupLoadingState() = with(binding) {
+        progressBar.isVisible = true
+        tryAgainBtn.isVisible = false
+        errorMsg.isVisible = false
+        recyclerView.isVisible = false
     }
 
-    private fun setupErrorState(error: Throwable) {
-        binding.errorMsg.isVisible = true
-        binding.progressBar.isVisible = false
-        binding.recyclerView.isVisible = false
-        binding.errorMsg.text = uiErrorHandler.getString(error)
+    private fun setupErrorState(error: Throwable) = with(binding) {
+        errorMsg.isVisible = true
+        progressBar.isVisible = false
+        recyclerView.isVisible = false
+        errorMsg.text = uiErrorHandler.getString(error)
         if (
             error is ApiError.Network ||
             error is ApiError.Forbidden ||
             error is ApiError.ServiceUnavailable ||
             error is ApiError.Unknown
-        ) binding.tryAgainBtn.isVisible = true
+        ) tryAgainBtn.isVisible = true
     }
 
-    private fun setupNotLoadingState() {
-        binding.apply {
-            progressBar.isVisible = false
-            recyclerView.isVisible = true
-        }
+    private fun setupNotLoadingState() = with(binding) {
+        progressBar.isVisible = false
+        recyclerView.isVisible = true
     }
-
 
 }
