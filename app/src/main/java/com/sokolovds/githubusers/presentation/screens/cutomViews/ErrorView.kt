@@ -91,7 +91,6 @@ class ErrorView @JvmOverloads constructor(
         requestLayout()
     }
 
-
     companion object {
         private const val ERROR_TEXT = "Error!"
         private const val ERROR_TEXT_SIZE = 14f

@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="#0d1117"
     android:backgroundTintMode="multiply"
+    android:id="@+id/scrollView"
+    android:fillViewport="true"
 
     tools:context=".presentation.screens.profileScreen.ProfileFragment">
 
@@ -230,30 +232,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/tryAgainBtn"
-            style="@style/TryAgainBtn"
-            app:layout_constraintEnd_toEndOf="parent"
+        <com.sokolovds.githubusers.presentation.screens.cutomViews.ErrorView
+            android:id="@+id/errorView"
+            style="@style/ErrorView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/errorMsg" />
-
-        <TextView
-            android:id="@+id/errorMsg"
-            style="@style/ErrorMsg"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Кажется у вас проблемы с интернетом, рекомедуем проверить соединение" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/errorGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="errorMsg,tryAgainBtn" />
-
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

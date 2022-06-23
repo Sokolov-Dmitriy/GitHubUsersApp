@@ -39,7 +39,6 @@ class UsersPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserItem> {
         if (query.isEmpty()) return LoadResult.Error(ApiError.QueryWithOutArgs)
-        delay(2000)
         try {
             val pageNumber = params.key ?: 1
             val response = loadUsers(pageNumber)

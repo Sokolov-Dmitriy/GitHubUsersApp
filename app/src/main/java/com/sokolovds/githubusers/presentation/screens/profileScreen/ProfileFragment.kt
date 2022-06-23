@@ -43,7 +43,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun setupButtons() = with(binding) {
-        tryAgainBtn.setOnClickListener { viewModel.onTryAgainPressed() }
+        errorView.setOnClickListener { viewModel.onTryAgainPressed() }
     }
 
     private fun setupContent(data: ProfileFragmentUserEntity, visible: Boolean = true) =
@@ -112,8 +112,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun showError(isVisible: Boolean = false, error: ApiError? = null) = with(binding) {
-        errorGroup.isVisible = isVisible
-        if (isVisible && error != null) errorMsg.text = uiErrorHandler.getString(error)
+        errorView.isVisible = isVisible
+        if (isVisible && error != null) errorView.errorText = uiErrorHandler.getString(error)
     }
 
     private fun showProgressBar(isVisible: Boolean = false) = with(binding) {
