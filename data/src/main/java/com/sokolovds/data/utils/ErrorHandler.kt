@@ -17,10 +17,32 @@ interface ErrorHandler {
         }
 
         override fun parseError(e: Throwable) = when (e) {
-            is HttpException -> ApiError.Network
-            else -> ApiError.Unknown
+            is HttpException -> {
+                println("DEBUG:EXCEPTION:HttpException")
+                ApiError.Network
+            }
+            is java.net.SocketTimeoutException -> {
+                println("DEBUG:EXCEPTION:SocketTimeoutException")
+                ApiError.Network
+            }
+            is java.net.UnknownHostException -> {
+                println("DEBUG:EXCEPTION:UnknownHostException")
+                ApiError.Network
+            }
+            is java.io.InterruptedIOException->{
+                println("DEBUG:EXCEPTION:InterruptedIOException")
+                ApiError.Network
+            }
+            is java.io.IOException->{
+                println("DEBUG:EXCEPTION:IOException")
+                ApiError.Network
+            }
+            else -> {
+                println("DEBUG:EXCEPTION:Else:${e}")
+                ApiError.Unknown
+            }
         }
     }
 
-    class Base: Abstract()
+    class Base : Abstract()
 }

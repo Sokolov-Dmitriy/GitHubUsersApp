@@ -107,4 +107,9 @@
         <item name="spaceSize">16dp</item>
         <item name="buttonText">@string/try_again</item>
     </style>
+
+    <style name="ErrorInStateAdapter" parent="ErrorView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="spaceSize">0dp</item>
+    </style>
 </resources>

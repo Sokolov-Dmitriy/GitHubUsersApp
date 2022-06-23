@@ -29,21 +29,21 @@ class UserLoadStateAdapter(
                 .onError { setupErrorState(it) }
         }
 
-        private fun setupButtons() = binding.tryAgainBtn.setOnClickListener {
+        private fun setupButtons() = binding.errorView.setOnClickListener {
             listener.onRetryPressed()
         }
 
         private fun setupLoadingState() = with(binding) {
             progressBar.isVisible = true
-            tryAgainBtn.isVisible = false
-            errorMsg.isVisible = false
+            errorView.btnIsVisible = false
+            errorView.errorMsgIsVisible = false
         }
 
         private fun setupErrorState(error: Throwable) = with(binding) {
-            tryAgainBtn.isVisible = true
-            errorMsg.isVisible = true
+            errorView.btnIsVisible = true
+            errorView.errorMsgIsVisible = true
             progressBar.isVisible = false
-            errorMsg.text = uiErrorHandler.getString(error)
+            errorView.errorText = uiErrorHandler.getString(error)
         }
 
 
