@@ -1,4 +1,4 @@
-package com.sokolovds.githubusers.presentation
+package com.sokolovds.githubusers.presentation.utils
 
 import android.annotation.SuppressLint
 import android.widget.ImageView

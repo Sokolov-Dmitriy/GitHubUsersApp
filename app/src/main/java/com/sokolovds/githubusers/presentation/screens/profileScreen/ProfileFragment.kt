@@ -11,9 +11,9 @@ import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.ProfileFragmentBinding
 import com.sokolovds.githubusers.di.ViewHandlerEnum
-import com.sokolovds.githubusers.presentation.loadImage
+import com.sokolovds.githubusers.presentation.utils.loadImage
 import com.sokolovds.githubusers.presentation.screens.profileScreen.entities.ProfileFragmentUserEntity
-import com.sokolovds.githubusers.presentation.setInView
+import com.sokolovds.githubusers.presentation.utils.setInView
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
 import com.sokolovds.githubusers.presentation.utils.ViewHandler
 import com.sokolovds.githubusers.presentation.utils.stateHandler.StateHandler

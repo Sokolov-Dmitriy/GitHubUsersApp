@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sokolovds.githubusers.databinding.UserItemBinding
-import com.sokolovds.githubusers.presentation.loadImage
+import com.sokolovds.githubusers.presentation.utils.loadImage
 import com.sokolovds.githubusers.presentation.screens.mainScreen.entities.MainFragmentUserItemEntity
 
 class UserAdapter(private val listener: OnItemClickListener) :

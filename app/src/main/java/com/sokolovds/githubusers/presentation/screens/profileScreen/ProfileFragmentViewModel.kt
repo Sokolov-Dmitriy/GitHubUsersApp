@@ -17,7 +17,7 @@ class ProfileFragmentViewModel(
         StateController.StateControllerImpl()
     val userState = userController.stateFlow
 
-    lateinit var userLogin: String
+    private lateinit var userLogin: String
     fun loadUserData(login: String) {
         userLogin = login
         viewModelScope.launch {
