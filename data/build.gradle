@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id "kotlin-kapt"
 }
 
 android {
@@ -20,6 +19,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+            def token = "\"" + localProperties['token'] + "\""
+            buildConfigField("String", "TOKEN", token)
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -30,11 +36,21 @@ android {
     }
 }
 
+ext {
+    koinVersion = "3.1.6"
+    retrofit = "2.9.0"
+    converterGson = "2.5.0"
+    loggingInterceptor = "3.9.0"
+    paging3 = "3.1.1"
+}
+
 dependencies {
     implementation project(path: ":domain")
-    implementation 'androidx.paging:paging-common-ktx:3.1.1'
-    testImplementation 'junit:junit:4.13.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    testImplementation "junit:junit:4.13.2"
+    implementation "androidx.paging:paging-common-ktx:$paging3"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$converterGson"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptor"
+    implementation "io.insert-koin:koin-android:$koinVersion"
 }
+

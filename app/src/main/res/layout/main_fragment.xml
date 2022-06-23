@@ -57,35 +57,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
         app:layout_constraintStart_toStartOf="@id/verticalStartGL"
-        app:layout_constraintTop_toBottomOf="@id/errorMsg"
+        app:layout_constraintTop_toBottomOf="@id/filledTextField"
         tools:itemCount="10"
         tools:listitem="@layout/user_item" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/ProgressBar"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/progressBarLayout"
+        layout="@layout/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalBottomGL"
+        app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+        app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+        app:layout_constraintTop_toTopOf="@id/horizontalTopGL" />
 
-    <Button
-        android:id="@+id/tryAgainBtn"
-        style="@style/TryAgainBtn"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.sokolovds.githubusers.presentation.screens.cutomViews.ErrorView
+        android:id="@+id/errorView"
+        style="@style/ErrorView"
+        app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
+        app:layout_constraintStart_toStartOf="@id/verticalStartGL"
+        app:layout_constraintTop_toBottomOf="@id/filledTextField"/>
 
-    <TextView
-        android:id="@+id/errorMsg"
-        style="@style/ErrorMsg"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filledTextField"
-        tools:text="Кажется у вас проблемы с интернетом, рекомедуем проверить соединение" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

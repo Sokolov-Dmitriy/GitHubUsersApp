@@ -1,7 +1,7 @@
 package com.sokolovds.domain.models
 
 import androidx.paging.LoadState
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiError
 
 sealed class Result<out T> {
     companion object {

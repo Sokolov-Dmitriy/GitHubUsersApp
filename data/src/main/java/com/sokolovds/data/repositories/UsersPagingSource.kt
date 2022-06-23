@@ -1,15 +1,14 @@
-package com.sokolovds.data
+package com.sokolovds.data.repositories
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.sokolovds.data.cloudDataSource.CloudConfig
 import com.sokolovds.data.cloudDataSource.UsersApi
-import com.sokolovds.domain.ApiError
-import com.sokolovds.domain.DefaultValues
 import com.sokolovds.domain.ErrorHandler
 import com.sokolovds.domain.models.UserItem
+import com.sokolovds.domain.utils.ApiError
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class UsersPagingSource(
@@ -21,7 +20,7 @@ class UsersPagingSource(
 ) :
     PagingSource<Int, UserItem>() {
 
-    private val finishedQuery = DefaultValues.getFinishedQuery(query)
+    private val finishedQuery = CloudConfig.getFinishedQuery(query)
 
     override fun getRefreshKey(state: PagingState<Int, UserItem>): Int? {
         return null
@@ -43,8 +42,9 @@ class UsersPagingSource(
             val pageNumber = params.key ?: 1
             val response = loadUsers(pageNumber)
             if (response.isSuccessful) {
-                val totalCount: Int = response.body()?.total_count!!
-                val items = response.body()?.toUserItems()!!
+                val body = response.body() ?: return LoadResult.Error(ApiError.EmptyResponseBody)
+                val totalCount: Int = body.total_count
+                val items = body.toUserItems()
                 if (items.isEmpty()) return LoadResult.Error(ApiError.EmptyResponse)
                 return LoadResult.Page(
                     data = items,

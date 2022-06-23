@@ -1,43 +1,43 @@
 package com.sokolovds.githubusers.presentation.screens.profileScreen
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sokolovds.domain.models.Result
-import com.sokolovds.domain.models.User
-import com.sokolovds.domain.usecase.GetCurrentUserAsFlow
+import com.sokolovds.domain.models.*
 import com.sokolovds.domain.usecase.GetUserByLogin
-import com.sokolovds.githubusers.presentation.base.BaseViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.sokolovds.githubusers.presentation.screens.profileScreen.entities.ProfileFragmentUserEntity
+import com.sokolovds.githubusers.presentation.utils.stateHandler.StateController
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class ProfileFragmentViewModel(
-    private val getCurrentUserAsFlow: GetCurrentUserAsFlow,
     private val getUserByLogin: GetUserByLogin
-) : BaseViewModel() {
+) : ViewModel() {
 
+    private val userController: StateController<ProfileFragmentUserEntity> =
+        StateController.StateControllerImpl()
+    val userState = userController.stateFlow
 
-    private val _userData = MutableStateFlow<Result<User>>(Result.Loading)
-    val userData = _userData.asStateFlow()
-
-
-    init {
-        loadData()
-    }
-
-    private fun loadData() {
+    private lateinit var userLogin: String
+    fun loadUserData(login: String) {
+        userLogin = login
         viewModelScope.launch {
-            getCurrentUserAsFlow().collectLatest {
-                getUserByLogin(it).collectLatest { result ->
-                    _userData.emit(result)
-                }
+            getUserByLogin(login).collectLatest { result ->
+                result
+                    .onSuccess {
+                        userController.successState(
+                            ProfileFragmentUserEntity.fromDomainUserEntity(it)
+                        )
+                    }
+                    .onLoading { userController.loadingState() }
+                    .onError { userController.errorState(it) }
             }
         }
     }
 
     fun onTryAgainPressed() {
-        loadData()
+        if (this::userLogin.isInitialized) {
+            loadUserData(userLogin)
+        }
     }
-
 
 }

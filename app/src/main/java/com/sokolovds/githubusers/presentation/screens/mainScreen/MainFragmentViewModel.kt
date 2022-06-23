@@ -1,30 +1,26 @@
 package com.sokolovds.githubusers.presentation.screens.mainScreen
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.paging.*
 import com.sokolovds.domain.DefaultValues
-import com.sokolovds.domain.models.UserItem
 import com.sokolovds.domain.usecase.GetUsersPagingSource
-import com.sokolovds.domain.usecase.SetCurrentUser
-import com.sokolovds.githubusers.presentation.adapters.UserAdapter
-import com.sokolovds.githubusers.presentation.base.BaseViewModel
+import com.sokolovds.githubusers.presentation.screens.mainScreen.entities.MainFragmentUserItemEntity
+import com.sokolovds.githubusers.presentation.utils.navigation.NavigationController
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-@OptIn(FlowPreview::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class MainFragmentViewModel(
+    private val navigationController: NavigationController,
     private val getUsersPagingSource: GetUsersPagingSource,
-    private val setCurrentUser: SetCurrentUser
-) : BaseViewModel(), UserAdapter.ClickListener, KoinComponent {
-    val flow: Flow<PagingData<UserItem>>
-
+    private val pagingConfig: PagingConfig
+) : ViewModel() {
+    val flow: Flow<PagingData<MainFragmentUserItemEntity>>
     private val searchBy = MutableStateFlow("")
-    private val pagingConfig by inject<PagingConfig>()
+    val navActionFlow = navigationController.navActionFlow(viewModelScope)
 
     init {
         flow = searchBy
@@ -40,15 +36,17 @@ class MainFragmentViewModel(
         }
     }
 
-    private fun setupUsersPager(searchBy: String): Flow<PagingData<UserItem>> {
-        return Pager(pagingConfig) {
+    private fun setupUsersPager(searchBy: String): Flow<PagingData<MainFragmentUserItemEntity>> =
+        Pager(pagingConfig) {
             getUsersPagingSource(searchBy)
-        }.flow
-    }
+        }.flow.map { pagingData ->
+            pagingData.map { MainFragmentUserItemEntity.fromDomainUserItemEntity(it) }
+        }
 
-    override fun onItemClick(login: String) {
-        setCurrentUser(login)
-        navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
-    }
+
+    fun onItemClick(login: String) = navigationController.navigateTo(
+        MainFragmentDirections.actionMainFragmentToProfileFragment(login)
+    )
+
 
 }

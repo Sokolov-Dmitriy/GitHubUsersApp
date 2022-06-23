@@ -1,7 +1,7 @@
 package com.sokolovds.githubusers.presentation.utils
 
 import android.content.Context
-import com.sokolovds.domain.ApiError
+import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.R
 
 

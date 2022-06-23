@@ -1,4 +1,4 @@
-package com.sokolovds.githubusers.presentation.navigation
+package com.sokolovds.githubusers.presentation.utils.navigation
 
 import androidx.navigation.NavDirections
 
