@@ -1,7 +1,8 @@
 package com.sokolovds.data.di
 
 import com.sokolovds.data.repositories.RepositoryImp
-import com.sokolovds.data.utils.ErrorHandler
+import com.sokolovds.data.utils.ErrorHandlerImpl
+import com.sokolovds.domain.ErrorHandler
 import com.sokolovds.domain.Repository
 import org.koin.dsl.module
 
@@ -14,6 +15,6 @@ val repositoriesModule = module {
     }
 
     factory<ErrorHandler> {
-        ErrorHandler.Base()
+        ErrorHandlerImpl()
     }
 }

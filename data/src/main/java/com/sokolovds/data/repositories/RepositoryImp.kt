@@ -2,8 +2,8 @@ package com.sokolovds.data.repositories
 
 import androidx.paging.PagingSource
 import com.sokolovds.data.cloudDataSource.UsersApi
-import com.sokolovds.data.utils.ErrorHandler
 import com.sokolovds.domain.DefaultValues
+import com.sokolovds.domain.ErrorHandler
 import com.sokolovds.domain.Repository
 import com.sokolovds.domain.models.Result
 import com.sokolovds.domain.models.User
