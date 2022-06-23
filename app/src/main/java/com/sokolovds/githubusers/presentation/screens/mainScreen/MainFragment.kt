@@ -16,8 +16,8 @@ import com.sokolovds.domain.utils.ApiError
 import com.sokolovds.githubusers.R
 import com.sokolovds.githubusers.databinding.MainFragmentBinding
 import com.sokolovds.githubusers.di.ViewHandlerEnum
-import com.sokolovds.githubusers.presentation.adapters.UserAdapter
-import com.sokolovds.githubusers.presentation.adapters.UserLoadStateAdapter
+import com.sokolovds.githubusers.presentation.screens.mainScreen.adapters.UserAdapter
+import com.sokolovds.githubusers.presentation.screens.mainScreen.adapters.UserLoadStateAdapter
 import com.sokolovds.githubusers.presentation.utils.UiErrorHandler
 import com.sokolovds.githubusers.presentation.utils.ViewHandler
 import kotlinx.coroutines.flow.collectLatest
@@ -48,7 +48,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun setupButtons() = with(binding) {
-        errorLayout.tryAgainBtn.setOnClickListener { adapter.retry() }
+        errorView.setOnClickListener { adapter.retry() }
     }
 
     private fun setupEditTextFields() = with(binding) {
@@ -103,11 +103,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun showErrorLayout(isVisible: Boolean = false, error: Throwable? = null) =
-        with(binding) {
-            errorLayout.content.isVisible = isVisible
+        with(binding.errorView) {
+            this.isVisible = isVisible
             error?.let {
-                errorLayout.errorMsg.text = uiErrorHandler.getString(error)
-                errorLayout.tryAgainBtn.isVisible = errorButtonIsVisible(error)
+                errorText = uiErrorHandler.getString(error)
+                btnIsVisible = errorButtonIsVisible(error)
             }
         }
 

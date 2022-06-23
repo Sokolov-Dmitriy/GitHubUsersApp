@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ErrorView">
+        <attr name="spaceSize" format="dimension" />
+        <attr name="errorTextSize" format="dimension" />
+        <attr name="buttonTextSize" format="dimension" />
+        <attr name="errorText" format="string" />
+        <attr name="buttonText" format="string" />
+        <attr name="errorTextColor" format="color" />
+        <attr name="buttonTextColor" format="color" />
+    </declare-styleable>
+</resources>

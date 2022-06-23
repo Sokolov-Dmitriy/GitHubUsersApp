@@ -8,11 +8,9 @@ data class MainFragmentUserItemEntity(
     val avatarUrl: String
 ) : UIEntity {
     companion object {
-        fun fromDomainUserItemEntity(entity: UserItem): MainFragmentUserItemEntity {
-            return MainFragmentUserItemEntity(
-                login = entity.login,
-                avatarUrl = entity.avatarUrl
-            )
-        }
+        fun fromDomainUserItemEntity(entity: UserItem) = MainFragmentUserItemEntity(
+            login = entity.login,
+            avatarUrl = entity.avatarUrl
+        )
     }
 }

@@ -95,7 +95,16 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="boxStrokeWidth">2dp</item>
+    </style>
 
-
+    <style name="ErrorView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="errorTextColor">#bdc1c6</item>
+        <item name="errorTextSize">6sp</item>
+        <item name="buttonTextColor">@color/white</item>
+        <item name="buttonTextSize">6sp</item>
+        <item name="spaceSize">16dp</item>
+        <item name="buttonText">@string/try_again</item>
     </style>
 </resources>

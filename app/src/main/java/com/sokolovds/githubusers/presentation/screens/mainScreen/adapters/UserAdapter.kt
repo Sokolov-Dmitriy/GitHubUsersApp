@@ -1,4 +1,4 @@
-package com.sokolovds.githubusers.presentation.adapters
+package com.sokolovds.githubusers.presentation.screens.mainScreen.adapters
 
 import android.view.LayoutInflater
 import android.view.View

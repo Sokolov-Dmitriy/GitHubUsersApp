@@ -71,14 +71,13 @@
         app:layout_constraintStart_toStartOf="@id/verticalStartGL"
         app:layout_constraintTop_toTopOf="@id/horizontalTopGL" />
 
-    <include
-        android:id="@+id/errorLayout"
-        layout="@layout/error"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <com.sokolovds.githubusers.presentation.screens.cutomViews.ErrorView
+        android:id="@+id/errorView"
+        style="@style/ErrorView"
         app:layout_constraintEnd_toEndOf="@id/verticalEndGL"
         app:layout_constraintStart_toStartOf="@id/verticalStartGL"
-        app:layout_constraintTop_toBottomOf="@id/filledTextField" />
+        app:layout_constraintTop_toBottomOf="@id/filledTextField"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
