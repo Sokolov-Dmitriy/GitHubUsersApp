@@ -48,7 +48,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun setupButtons() = with(binding) {
-        tryAgainBtn.setOnClickListener { adapter.retry() }
+        errorLayout.tryAgainBtn.setOnClickListener { adapter.retry() }
     }
 
     private fun setupEditTextFields() = with(binding) {
@@ -76,35 +76,45 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private fun observeAdapterDataState() = viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         adapter.loadStateFlow.collectLatest { state ->
             state.refresh
-                .onLoading { setupLoadingState() }
-                .onNotLoading { setupNotLoadingState() }
-                .onError { setupErrorState(it) }
+                .onLoading {
+                    showProgressBar(true)
+                    showErrorLayout(false)
+                    showUsersList(false)
+                }
+                .onNotLoading {
+                    showProgressBar(false)
+                    showErrorLayout(false)
+                    showUsersList(true)
+                }
+                .onError {
+                    showProgressBar(false)
+                    showErrorLayout(true, it)
+                    showUsersList(false)
+                }
         }
     }
 
-    private fun setupLoadingState() = with(binding) {
-        progressBar.isVisible = true
-        tryAgainBtn.isVisible = false
-        errorMsg.isVisible = false
-        recyclerView.isVisible = false
+    private fun showUsersList(isVisible: Boolean = false) = with(binding) {
+        recyclerView.isVisible = isVisible
     }
 
-    private fun setupErrorState(error: Throwable) = with(binding) {
-        errorMsg.isVisible = true
-        progressBar.isVisible = false
-        recyclerView.isVisible = false
-        errorMsg.text = uiErrorHandler.getString(error)
-        if (
-            error is ApiError.Network ||
-            error is ApiError.Forbidden ||
-            error is ApiError.ServiceUnavailable ||
-            error is ApiError.Unknown
-        ) tryAgainBtn.isVisible = true
+    private fun showProgressBar(isVisible: Boolean = false) = with(binding) {
+        progressBarLayout.progressBar.isVisible = isVisible
     }
 
-    private fun setupNotLoadingState() = with(binding) {
-        progressBar.isVisible = false
-        recyclerView.isVisible = true
-    }
+    private fun showErrorLayout(isVisible: Boolean = false, error: Throwable? = null) =
+        with(binding) {
+            errorLayout.content.isVisible = isVisible
+            error?.let {
+                errorLayout.errorMsg.text = uiErrorHandler.getString(error)
+                errorLayout.tryAgainBtn.isVisible = errorButtonIsVisible(error)
+            }
+        }
+
+    private inline fun <reified T : Throwable> errorButtonIsVisible(error: T) =
+        (error is ApiError.Network ||
+                error is ApiError.Forbidden ||
+                error is ApiError.ServiceUnavailable ||
+                error is ApiError.Unknown)
 
 }
